@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import NoteList from './NoteList';
 import Search from './Search';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './components.css';
 
 const Notes = () => {
@@ -28,6 +28,7 @@ const Notes = () => {
   ]);
 
   const [searchText, setSearchText] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     localStorage.setItem('react-notes-data', JSON.stringify(notes));
@@ -64,9 +65,15 @@ const Notes = () => {
 
   const handleLogout = () => {
     try {
+      // Clear specific items from localStorage
       localStorage.removeItem('email');
       localStorage.removeItem('password');
-      window.location.href = '/firstpage'; // Redirect after logout
+      
+      // Optionally, clear all of localStorage
+      // localStorage.clear();
+
+      // Redirect to first page
+      navigate('/firstpage');
     } catch (error) {
       console.error('Error clearing local storage:', error);
     }
@@ -84,11 +91,9 @@ const Notes = () => {
         handleUpdateNote={handleUpdateNote}
       />
       <div className='logout'>
-        <Link to="/firstpage">
-          <button className="button" onClick={handleLogout}>
-            Logout
-          </button>
-        </Link> 
+        <button className="button" onClick={handleLogout}>
+          Logout
+        </button>
       </div>
     </div>
   );

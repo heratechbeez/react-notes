@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [enteredValues, setEnteredValues] = useState({
@@ -7,6 +7,7 @@ export default function Login() {
     password: ''
   });
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -15,8 +16,10 @@ export default function Login() {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
+      const { email, password } = enteredValues;
+      setUser(email, password);
       console.log(enteredValues);
-   
+      navigate('/Notes');
     }
   }
 
@@ -41,12 +44,12 @@ export default function Login() {
       [identifier]: '' 
     }));
   }
-  function setUser(){
-    localStorage.setItem('email' ,'password', JSON.stringify(email,password)); 
+
+  function setUser(email, password) {
+    localStorage.setItem('email', email);
+    localStorage.setItem('password', password);
   }
-  function getUser() {
-    user = JSON.parse(localStorage.getItem('email', 'password'))
-  }
+
   return (
     <form onSubmit={handleSubmit}>
       <h2>Login</h2>
@@ -74,12 +77,9 @@ export default function Login() {
           {errors.password && <p className="error">{errors.password}</p>}
         </div>
       </div>
-      <Link to ="/Notes">
       <p className="form-actions">
-     
-        <button className="button">Login</button>
+        <button type="submit" className="button">Login</button>
       </p>
-      </Link>
       <h6>Don't have an account? Register now.</h6>
       <Link to="/register">
         <button type="button" className="button">Register</button>

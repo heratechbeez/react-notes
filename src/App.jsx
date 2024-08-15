@@ -1,15 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React from 'react';
-//import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-//import files from the components folder
 import AddNote from './components/AddNote';
 import Note from './components/Note';
 import NoteList from './components/NoteList';
 import Notes from './components/Notes';
 import Search from './components/Search';
 
-// Import files from the pages folder
+
 import Firstpage from './pages/firstpage';
 import Login from './pages/login';
 import Register from './pages/register';

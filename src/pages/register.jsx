@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Register() {
   const [enteredValues, setEnteredValues] = useState({
@@ -10,6 +10,7 @@ export default function Register() {
   });
 
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -18,14 +19,20 @@ export default function Register() {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
+      setUser(
+        enteredValues.email,
+        enteredValues.password,
+        enteredValues.firstName,
+        enteredValues.lastName
+      );
       console.log(enteredValues);
-      // Proceed with form submission or API call
+      navigate('/login'); 
     }
   }
-  function setUser(){
-    localStorage.setItem('email' ,'password', 'firstName','lastName', JSON.stringify(email,password,firstName,lastName)); 
-  }
 
+  function setUser(email, password, firstName, lastName) {
+    localStorage.setItem('user', JSON.stringify({ email, password, firstName, lastName }));
+  }
 
   function validateForm() {
     const errors = {};
@@ -108,13 +115,11 @@ export default function Register() {
           {errors.lastName && <p className="error">{errors.lastName}</p>}
         </div>
       </div>
-      <Link to ="/login"> 
       <p className="form-actions">
         <button type="submit" className="button">
           Register
         </button>
       </p>
-      </Link>
       <h6>Already have an account? Log in.</h6> 
       <Link to="/login"> 
         <button type="button" className="button">Login</button>

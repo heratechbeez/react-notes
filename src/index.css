@@ -24,9 +24,8 @@
   
   body {
 	margin: 0;
-	display: flex;
 	place-items: center;
-	min-width: 320px;
+	width: 100%;
 	min-height: 100vh;
   }
   
@@ -53,17 +52,26 @@
   button:focus-visible {
 	outline: 4px auto -webkit-focus-ring-color;
   }
-  
-  @media (prefers-color-scheme: light) {
-	:root {
-	  color: #213547;
-	  background-color: #ffffff;
-	}
-	a:hover {
-	  color: #747bff;
-	}
-	button {
-	  background-color: #f9f9f9;
-	}
-  }
-  
+  @media (max-width:991px){
+
+    html{
+       font-size: 55%;
+    }
+ 
+ }
+ 
+ @media (max-width:768px){
+ 
+    .products-preview .preview img{
+       height: 25rem;
+    }
+ 
+ }
+ 
+ @media (max-width:450px){
+ 
+    html{
+       font-size: 50%;
+    }
+ 
+ }

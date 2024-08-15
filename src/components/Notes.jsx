@@ -64,19 +64,13 @@ const Notes = () => {
   };
 
   const handleLogout = () => {
-    try {
-      // Clear specific items from localStorage
-      localStorage.removeItem('email');
-      localStorage.removeItem('password');
-      
-      // Optionally, clear all of localStorage
-      // localStorage.clear();
+  
+    localStorage.removeItem('user');  
+    localStorage.removeItem('email'); 
+    localStorage.removeItem('password'); 
 
-      // Redirect to first page
-      navigate('/firstpage');
-    } catch (error) {
-      console.error('Error clearing local storage:', error);
-    }
+  
+    navigate('/firstpage'); 
   };
 
   return (
@@ -84,7 +78,7 @@ const Notes = () => {
       <Search handleSearchNote={handleSearchNote} />
       <NoteList
         notes={notes.filter(note =>
-          note.title.toLowerCase().includes(searchText) // Filter by title
+          note.title.toLowerCase().includes(searchText) 
         )}
         handleAddNote={handleAddNote}
         handleDeleteNote={handleDeleteNote}

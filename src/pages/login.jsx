@@ -17,8 +17,8 @@ export default function Login() {
       setErrors(validationErrors);
     } else {
       const { email, password } = enteredValues;
-      setUser(email, password);
-      console.log(enteredValues);
+      storeUser(email, password);
+      console.log("Stored data:", localStorage.getItem('user')); 
       navigate('/Notes');
     }
   }
@@ -45,9 +45,8 @@ export default function Login() {
     }));
   }
 
-  function setUser(email, password) {
-    localStorage.setItem('email', email);
-    localStorage.setItem('password', password);
+  function storeUser(email, password) {
+    localStorage.setItem('user', JSON.stringify({ email, password }));
   }
 
   return (

@@ -1,0 +1,88 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #242424;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #67d7cc;
+
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    background-color: #242424;
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.search input {
+    border: none;
+    background-color: #e9e9e9;
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.search input:focus {
+    outline: none;
+}
+
+.note {
+    background-color: #81817f;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 0;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 0 5px #67d7cc;
+}
+
+.note.new {
+    background-color: #67d7cc;
+}
+
+
+.note-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.delete-icon {
+    cursor: pointer;
+    color: rgb(8, 8, 8);
+}
+
+
+.button {
+	padding: 10px 20px;
+	margin: 10px;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
+
+
+.add-note {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px #67d7cc;
+}
+
+.add-note textarea {
+    width: 100%;
+    max-width: 500px;
+    padding: 10px;
+    border-radius: 5px
+}

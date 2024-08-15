@@ -8,9 +8,9 @@ const Firstpage = () => {
     return (
         <div className='main'>
             <h1>NOTES</h1>
-            <img src='src\pages\notes.png' alt='Notes'  width={90} height={100}/>
-            
-              
+            <img src='src\pages\notes.png' alt='Notes'  width={590} height={700}/>
+          
+            <br/>
             <Link to="login">  
             <button>
               Login

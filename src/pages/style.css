@@ -1,25 +1,161 @@
-.container {
+
+body, html {
+	height: 100%;
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  }
+
+  .container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	height: 100vh;
-	background-color: #f0f0f0;
-	
-}
+	width: 100%;
+	background-color: #1f1d1d;
+  }
 
-.title {
+  .title {
 	font-size: 2rem;
 	margin-bottom: 20px;
-}
+  }
+  
 
-.button {
+  .button {
 	padding: 10px 20px;
 	margin: 10px;
 	font-size: 1rem;
 	cursor: pointer;
-}
+	border: none;
+	background-color: #007bff;
+	color: rgb(29, 28, 28);
+	border-radius: 4px;
+  }
+  
+  .button:hover {
+	background-color: #0056b3;
+  }
+  
 
-.main{
-width: 100%;
-}
+  .main {
+	width: 100%;
+	font-family: 'Brush Script MT', cursive;
+	text-align: center;
+  }
+  
+
+  h1 {
+	margin-bottom: 20px; 
+	text-align: center; 
+	font-family: 'Brush Script MT', cursive;
+  }
+
+  .login {
+	display: flex;
+	justify-content: center;
+	align-items: center;    
+	height: 100vh;          
+  }
+  
+
+  form {
+	max-width: 400px;
+	width: 100%;
+	padding: 20px;
+	border: 1px solid #131212;
+	border-radius: 8px;
+	background-color: #1f1d1d;
+	display: flex;
+	flex-direction: column;
+	align-items: center; 
+  }
+
+  .cntrol-row {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+  }
+  
+
+  .control {
+	width: 100%;
+	margin-bottom: 15px;
+	display: flex;
+	flex-direction: column;
+	align-items: center; 
+	text-align: left; 
+  }
+  
+
+  .large-input {
+	width: 300px;
+	padding: 10px;
+	font-size: 16px;
+  }
+  
+  
+  .error {
+	color: red;
+  }
+  
+
+  .form-actions {
+	display: flex;
+	justify-content: center;
+  }
+  
+  
+  .register-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	margin-top: 20px;
+  }
+  
+  
+  h5 {
+	margin: 0;
+	
+  }
+  
+  
+  .button1 {
+	justify-content: center;
+	align-items: center;  
+  }
+  
+  h6 {
+	margin-top: 20px; 
+	text-align: center;
+  }
+ 
+form {
+	max-width: 400px;
+	width: 100%;
+	padding: 20px;
+	border: 1px solid #131212;
+	border-radius: 8px;
+	background-color: #1f1d1d;
+	display: flex;
+	flex-direction: column;
+	align-items: center; 
+  }
+  
+  
+  .form-actions {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+  }
+  
+
+  .register-footer {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+  }
+  

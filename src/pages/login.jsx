@@ -17,9 +17,13 @@ export default function Login() {
       setErrors(validationErrors);
     } else {
       const { email, password } = enteredValues;
-      storeUser(email, password);
-      console.log("Stored data:", localStorage.getItem('user')); 
-      navigate('/Notes');
+      if (validateCredentials(email, password)) {
+        storeUser(email, password); 
+        console.log("Login successful:", enteredValues);
+        navigate('/Notes');
+      } else {
+        setErrors({ login: 'Invalid email or password' });
+      }
     }
   }
 
@@ -46,12 +50,24 @@ export default function Login() {
   }
 
   function storeUser(email, password) {
+   
     localStorage.setItem('user', JSON.stringify({ email, password }));
   }
 
+  function validateCredentials(email, password) {
+
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (storedUser) {
+
+      return storedUser.email === email && storedUser.password === password;
+    }
+    return false;
+  }
+
   return (
+    
     <form onSubmit={handleSubmit}>
-      <h2>Login</h2>
+      <h1>Login</h1>
       <div className="cntrol-row">
         <div className="control no-margin">
           <label htmlFor="email">Email</label>
@@ -61,6 +77,7 @@ export default function Login() {
             name="email"
             onChange={(event) => handleInputChange('email', event.target.value)}
             value={enteredValues.email}
+             className="large-input"
           />
           {errors.email && <p className="error">{errors.email}</p>}
         </div>
@@ -72,17 +89,21 @@ export default function Login() {
             name="password"
             onChange={(event) => handleInputChange('password', event.target.value)}
             value={enteredValues.password}
+             className="large-input"
           />
           {errors.password && <p className="error">{errors.password}</p>}
         </div>
       </div>
+      {errors.login && <p className="error">{errors.login}</p>}
       <p className="form-actions">
         <button type="submit" className="button">Login</button>
       </p>
-      <h6>Don't have an account? Register now.</h6>
+      <div className="register-container">
+      <h5>Don't have an account? Register now.</h5>
       <Link to="/register">
         <button type="button" className="button">Register</button>
-      </Link>
+      </Link></div>
     </form>
+
   );
 }

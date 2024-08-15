@@ -6,34 +6,40 @@ import { Link, useNavigate } from 'react-router-dom';
 import './components.css';
 
 const Notes = () => {
-  const [notes, setNotes] = useState([
-    {
-      id: nanoid(),
-      title: 'e hene',
-      text: 'This is my first note!',
-      date: '12/08/2024'
-    },
-    {
-      id: nanoid(),
-      title: 'shenim',
-      text: 'Bej pazarin',
-      date: '12/08/2024'
-    },
-    {
-      id: nanoid(),
-      title: 'rendesishme',
-      text: 'Shko te dentisti diten e marte',
-      date: '12/08/2024'
-    }
-  ]);
+  // Load notes from localStorage if available, otherwise start with default notes
+  const [notes, setNotes] = useState(() => {
+    const savedNotes = JSON.parse(localStorage.getItem('react-notes-data'));
+    return savedNotes || [
+      {
+        id: nanoid(),
+        title: 'e hene',
+        text: 'This is my first note!',
+        date: '12/08/2024'
+      },
+      {
+        id: nanoid(),
+        title: 'shenim',
+        text: 'Bej pazarin',
+        date: '12/08/2024'
+      },
+      {
+        id: nanoid(),
+        title: 'rendesishme',
+        text: 'Shko te dentisti diten e marte',
+        date: '12/08/2024'
+      }
+    ];
+  });
 
   const [searchText, setSearchText] = useState('');
   const navigate = useNavigate();
 
+  // Save notes to localStorage whenever notes state changes
   useEffect(() => {
     localStorage.setItem('react-notes-data', JSON.stringify(notes));
   }, [notes]);
 
+  // Add a new note and update state
   const handleAddNote = (text) => {
     const date = new Date();
     const newNote = {
@@ -64,12 +70,9 @@ const Notes = () => {
   };
 
   const handleLogout = () => {
-  
     localStorage.removeItem('user');  
     localStorage.removeItem('email'); 
     localStorage.removeItem('password'); 
-
-  
     navigate('/firstpage'); 
   };
 

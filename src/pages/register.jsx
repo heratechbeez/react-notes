@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import bcrypt from 'bcryptjs';
 
 export default function Register() {
   const [enteredValues, setEnteredValues] = useState({
@@ -31,7 +32,8 @@ export default function Register() {
   }
 
   function setUser(email, password, firstName, lastName) {
-    localStorage.setItem('user', JSON.stringify({ email, password, firstName, lastName }));
+    const hashedPassword = bcrypt.hashSync(password, 10); // Hash the password
+    localStorage.setItem('user', JSON.stringify({ email, password: hashedPassword, firstName, lastName }));
   }
 
   function validateForm() {
@@ -63,7 +65,9 @@ export default function Register() {
   }
 
   return (
+  
     <form onSubmit={handleSubmit}>
+      <h1>Register</h1>
       <div className="control">
         <label htmlFor="email">Email</label>
         <input
@@ -120,10 +124,12 @@ export default function Register() {
           Register
         </button>
       </p>
-      <h6>Already have an account? Log in.</h6> 
+      <div className="register-footer">
+      <h5>Already have an account? Log in.</h5> 
       <Link to="/login"> 
         <button type="button" className="button">Login</button>
-      </Link>
+      </Link></div>
     </form>
+      
   );
 }

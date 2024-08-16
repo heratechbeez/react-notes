@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import NoteList from './NoteList';
 import Search from './Search';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './components.css';
 
 const Notes = () => {
-  // Load notes from localStorage if available, otherwise start with default notes
+  
   const [notes, setNotes] = useState(() => {
     const savedNotes = JSON.parse(localStorage.getItem('react-notes-data'));
     return savedNotes || [
@@ -34,12 +34,10 @@ const Notes = () => {
   const [searchText, setSearchText] = useState('');
   const navigate = useNavigate();
 
-  // Save notes to localStorage whenever notes state changes
   useEffect(() => {
     localStorage.setItem('react-notes-data', JSON.stringify(notes));
   }, [notes]);
 
-  // Add a new note and update state
   const handleAddNote = (text) => {
     const date = new Date();
     const newNote = {
@@ -81,7 +79,8 @@ const Notes = () => {
       <Search handleSearchNote={handleSearchNote} />
       <NoteList
         notes={notes.filter(note =>
-          note.title.toLowerCase().includes(searchText) 
+          typeof note.title === 'string' &&
+          note.title.toLowerCase().includes(searchText)
         )}
         handleAddNote={handleAddNote}
         handleDeleteNote={handleDeleteNote}

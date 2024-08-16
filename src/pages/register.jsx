@@ -32,7 +32,7 @@ export default function Register() {
   }
 
   function setUser(email, password, firstName, lastName) {
-    const hashedPassword = bcrypt.hashSync(password, 10); // Hash the password
+    const hashedPassword = bcrypt.hashSync(password, 10); 
     localStorage.setItem('user', JSON.stringify({ email, password: hashedPassword, firstName, lastName }));
   }
 

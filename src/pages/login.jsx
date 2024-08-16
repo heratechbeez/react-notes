@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import bcrypt from 'bcryptjs';
 
 export default function Login() {
   const [enteredValues, setEnteredValues] = useState({
@@ -18,7 +19,6 @@ export default function Login() {
     } else {
       const { email, password } = enteredValues;
       if (validateCredentials(email, password)) {
-        storeUser(email, password); 
         console.log("Login successful:", enteredValues);
         navigate('/Notes');
       } else {
@@ -49,23 +49,16 @@ export default function Login() {
     }));
   }
 
-  function storeUser(email, password) {
-   
-    localStorage.setItem('user', JSON.stringify({ email, password }));
-  }
-
   function validateCredentials(email, password) {
-
     const storedUser = JSON.parse(localStorage.getItem('user'));
     if (storedUser) {
-
-      return storedUser.email === email && storedUser.password === password;
+      const passwordMatch = bcrypt.compareSync(password, storedUser.password);
+      return storedUser.email === email && passwordMatch;
     }
     return false;
   }
 
   return (
-    
     <form onSubmit={handleSubmit}>
       <h1>Login</h1>
       <div className="cntrol-row">
@@ -77,7 +70,7 @@ export default function Login() {
             name="email"
             onChange={(event) => handleInputChange('email', event.target.value)}
             value={enteredValues.email}
-             className="large-input"
+            className="large-input"
           />
           {errors.email && <p className="error">{errors.email}</p>}
         </div>
@@ -89,7 +82,7 @@ export default function Login() {
             name="password"
             onChange={(event) => handleInputChange('password', event.target.value)}
             value={enteredValues.password}
-             className="large-input"
+            className="large-input"
           />
           {errors.password && <p className="error">{errors.password}</p>}
         </div>
@@ -99,11 +92,11 @@ export default function Login() {
         <button type="submit" className="button">Login</button>
       </p>
       <div className="register-container">
-      <h5>Don't have an account? Register now.</h5>
-      <Link to="/register">
-        <button type="button" className="button">Register</button>
-      </Link></div>
+        <h5>Don't have an account? Register now.</h5>
+        <Link to="/register">
+          <button type="button" className="button">Register</button>
+        </Link>
+      </div>
     </form>
-
   );
 }

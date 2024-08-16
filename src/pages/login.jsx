@@ -18,11 +18,15 @@ export default function Login() {
       setErrors(validationErrors);
     } else {
       const { email, password } = enteredValues;
-      if (validateCredentials(email, password)) {
+      const validationResult = validateCredentials(email, password);
+
+      if (validationResult === true) {
         console.log("Login successful:", enteredValues);
         navigate('/Notes');
-      } else {
+      } else if (validationResult === false) {
         setErrors({ login: 'Invalid email or password' });
+      } else {
+        setErrors({ login: validationResult }); 
       }
     }
   }
@@ -51,11 +55,18 @@ export default function Login() {
 
   function validateCredentials(email, password) {
     const storedUser = JSON.parse(localStorage.getItem('user'));
-    if (storedUser) {
-      const passwordMatch = bcrypt.compareSync(password, storedUser.password);
-      return storedUser.email === email && passwordMatch;
+
+    if (!storedUser) {
+      return 'No user registered with this email'; 
     }
-    return false;
+
+    const passwordMatch = bcrypt.compareSync(password, storedUser.password);
+
+    if (storedUser.email === email && passwordMatch) {
+      return true; 
+    } else {
+      return false; 
+    }
   }
 
   return (

@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import './components.css';
 
 const Notes = () => {
-  
   const [notes, setNotes] = useState(() => {
     const savedNotes = JSON.parse(localStorage.getItem('react-notes-data'));
     return savedNotes || [
@@ -38,15 +37,14 @@ const Notes = () => {
     localStorage.setItem('react-notes-data', JSON.stringify(notes));
   }, [notes]);
 
-  const handleAddNote = (text) => {
+  const handleAddNote = (newNote) => {
     const date = new Date();
-    const newNote = {
+    const noteWithDate = {
       id: nanoid(),
-      title: text,
-      text: text,
+      ...newNote,
       date: date.toLocaleDateString()
     };
-    setNotes(prevNotes => [...prevNotes, newNote]);
+    setNotes(prevNotes => [...prevNotes, noteWithDate]);
   };
 
   const handleDeleteNote = (id) => {
@@ -74,7 +72,7 @@ const Notes = () => {
     localStorage.removeItem('react-notes-data');
     navigate('/firstpage'); 
   };
-  
+
   return (
     <div className='container'>
       <Search handleSearchNote={handleSearchNote} />

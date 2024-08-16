@@ -1,12 +1,11 @@
+
 :root {
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 	line-height: 1.5;
 	font-weight: 400;
-  
 	color-scheme: light dark;
 	color: rgba(255, 255, 255, 0.87);
 	background-color: #242424;
-  
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
@@ -24,14 +23,18 @@
   
   body {
 	margin: 0;
-	place-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 100%;
 	min-height: 100vh;
+	background-color: #242424; 
   }
   
   h1 {
 	font-size: 3.2em;
 	line-height: 1.1;
+	margin: 0; 
   }
   
   button {
@@ -52,26 +55,45 @@
   button:focus-visible {
 	outline: 4px auto -webkit-focus-ring-color;
   }
-  @media (max-width:991px){
-
-    html{
-       font-size: 55%;
-    }
- 
- }
- 
- @media (max-width:768px){
- 
-    .products-preview .preview img{
-       height: 25rem;
-    }
- 
- }
- 
- @media (max-width:450px){
- 
-    html{
-       font-size: 50%;
-    }
- 
- }
+  
+  
+  @media (max-width: 991px) {
+	html {
+	  font-size: 55%;
+	}
+  
+	h1 {
+	  font-size: 2.5em; 
+	}
+  }
+  
+  @media (max-width: 768px) {
+	.products-preview .preview img {
+	  height: 25rem;
+	  width: auto; 
+	}
+	
+	h1 {
+	  font-size: 2em;
+	}
+  }
+  
+  @media (max-width: 450px) {
+	html {
+	  font-size: 50%;
+	}
+  
+	h1 {
+	  font-size: 1.6em;
+	}
+  
+	button {
+	  padding: 0.5em 1em; 
+	}
+	
+	.products-preview .preview img {
+	  height: auto; 
+	  width: 100%; 
+	}
+  }
+  

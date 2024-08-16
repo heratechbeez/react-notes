@@ -71,9 +71,10 @@ const Notes = () => {
     localStorage.removeItem('user');  
     localStorage.removeItem('email'); 
     localStorage.removeItem('password'); 
+    localStorage.removeItem('react-notes-data');
     navigate('/firstpage'); 
   };
-
+  
   return (
     <div className='container'>
       <Search handleSearchNote={handleSearchNote} />

@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react'; 
+import PropTypes from 'prop-types'; 
 import { MdDeleteForever } from 'react-icons/md';
+import './components.css'; 
 
 const Note = ({ id, title, text, date, handleDeleteNote, handleUpdateNote }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -12,22 +14,24 @@ const Note = ({ id, title, text, date, handleDeleteNote, handleUpdateNote }) => 
   };
 
   return (
-    <div className='note'>
+    <div className='note-item'> {/* Changed class to match CSS */}
       {isEditing ? (
-        <div>
+        <div className='note-edit'>
           <input
             type='text'
             value={updatedTitle}
             onChange={(e) => setUpdatedTitle(e.target.value)}
+            placeholder='Title'
           />
           <textarea
             value={updatedText}
             onChange={(e) => setUpdatedText(e.target.value)}
+            placeholder='Note content'
           />
           <button onClick={handleSave}>Save</button>
         </div>
       ) : (
-        <div>
+        <div className='note-view'>
           <h3>{title}</h3>
           <p>{text}</p>
           <div className='note-footer'>
@@ -43,6 +47,15 @@ const Note = ({ id, title, text, date, handleDeleteNote, handleUpdateNote }) => 
       )}
     </div>
   );
+};
+
+Note.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  title: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  handleDeleteNote: PropTypes.func.isRequired,
+  handleUpdateNote: PropTypes.func.isRequired,
 };
 
 export default Note;

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import bcrypt from 'bcryptjs';
+import './pages.css';
 
 export default function Login() {
   const [enteredValues, setEnteredValues] = useState({
@@ -70,10 +71,10 @@ export default function Login() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Login</h1>
-      <div className="cntrol-row">
-        <div className="control no-margin">
+    <div className="form-container">
+      <form onSubmit={handleSubmit}>
+        <h1>Login</h1>
+        <div className="control">
           <label htmlFor="email">Email</label>
           <input
             id="email"
@@ -85,7 +86,7 @@ export default function Login() {
           />
           {errors.email && <p className="error">{errors.email}</p>}
         </div>
-        <div className="control no-margin">
+        <div className="control">
           <label htmlFor="password">Password</label>
           <input
             id="password"
@@ -97,17 +98,17 @@ export default function Login() {
           />
           {errors.password && <p className="error">{errors.password}</p>}
         </div>
-      </div>
-      {errors.login && <p className="error">{errors.login}</p>}
-      <p className="form-actions">
-        <button type="submit" className="button">Login</button>
-      </p>
-      <div className="register-container">
-        <h5>Don't have an account? Register now.</h5>
-        <Link to="/register">
-          <button type="button" className="button">Register</button>
-        </Link>
-      </div>
-    </form>
+        {errors.login && <p className="error">{errors.login}</p>}
+        <div className="form-actions">
+          <button type="submit" className="button">Login</button>
+        </div>
+        <div className="register-container">
+          <h5>Do not have an account? Register now.</h5>
+          <Link to="/register">
+            <button type="button" className="button">Register</button>
+          </Link>
+        </div>
+      </form>
+    </div>
   );
 }

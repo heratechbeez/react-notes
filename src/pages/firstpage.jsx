@@ -1,28 +1,24 @@
-import React from 'react';
+//import React from 'react';
 import { Link } from 'react-router-dom';
-import './style.css';
-const Firstpage = () => {
-    
-   
+import './pages.css';
 
+const Firstpage = () => {
     return (
         <div className='main'>
+        <div className="left-container">
             <h1>NOTES</h1>
-            <img src='src\pages\notes.png' alt='Notes'  width={590} height={700}/>
-          
-            <br/>
-            <Link to="login">  
-            <button>
-              Login
-            </button>
-            </Link> 
-            <Link to ="/register">    
-            <button>
-                Register
-            </button>
-            </Link>
+            <div className="button-container">
+                <Link to="login">
+                    <button>Login</button>
+                </Link>
+                <Link to="/register">
+                    <button>Register</button>
+                </Link>
+            </div>
         </div>
-       
+        <img src='src/pages/notes.png' alt='Notes' width={400} height={650} />
+    </div>
+    
     );
 };
 

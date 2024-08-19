@@ -75,7 +75,7 @@ const Notes = () => {
 
   return (
     <div className='container'>
-      <Search handleSearchNote={handleSearchNote} />
+      <Search className="search" handleSearchNote={handleSearchNote} />
       <NoteList
         notes={notes.filter(note =>
           typeof note.title === 'string' &&
@@ -84,6 +84,7 @@ const Notes = () => {
         handleAddNote={handleAddNote}
         handleDeleteNote={handleDeleteNote}
         handleUpdateNote={handleUpdateNote}
+        className="notes-list"
       />
       <div className='logout'>
         <button className="button" onClick={handleLogout}>

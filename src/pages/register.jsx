@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import bcrypt from 'bcryptjs';
+import './pages.css';
 
 export default function Register() {
   const [enteredValues, setEnteredValues] = useState({
@@ -65,22 +66,21 @@ export default function Register() {
   }
 
   return (
-  
-    <form onSubmit={handleSubmit}>
-      <h1>Register</h1>
-      <div className="control">
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          name="email"
-          onChange={(event) => handleInputChange('email', event.target.value)}
-          value={enteredValues.email}
-        />
-        {errors.email && <p className="error">{errors.email}</p>}
-      </div>
-
-      <div className="control-row">
+    <div className="form-container">
+      <form onSubmit={handleSubmit}>
+        <h1>Register</h1>
+        <div className="control">
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            onChange={(event) => handleInputChange('email', event.target.value)}
+            value={enteredValues.email}
+            className="large-input"
+          />
+          {errors.email && <p className="error">{errors.email}</p>}
+        </div>
         <div className="control">
           <label htmlFor="password">Password</label>
           <input
@@ -89,12 +89,10 @@ export default function Register() {
             name="password"
             onChange={(event) => handleInputChange('password', event.target.value)}
             value={enteredValues.password}
+            className="large-input"
           />
           {errors.password && <p className="error">{errors.password}</p>}
         </div>
-      </div>
-
-      <div className="control-row">
         <div className="control">
           <label htmlFor="first-name">First Name</label>
           <input
@@ -103,10 +101,10 @@ export default function Register() {
             name="first-name"
             onChange={(event) => handleInputChange('firstName', event.target.value)}
             value={enteredValues.firstName}
+            className="large-input"
           />
           {errors.firstName && <p className="error">{errors.firstName}</p>}
         </div>
-
         <div className="control">
           <label htmlFor="last-name">Last Name</label>
           <input
@@ -115,21 +113,20 @@ export default function Register() {
             name="last-name"
             onChange={(event) => handleInputChange('lastName', event.target.value)}
             value={enteredValues.lastName}
+            className="large-input"
           />
           {errors.lastName && <p className="error">{errors.lastName}</p>}
         </div>
-      </div>
-      <p className="form-actions">
-        <button type="submit" className="button">
-          Register
-        </button>
-      </p>
-      <div className="register-footer">
-      <h5>Already have an account? Log in.</h5> 
-      <Link to="/login"> 
-        <button type="button" className="button">Login</button>
-      </Link></div>
-    </form>
-      
+        <div className="form-actions">
+          <button type="submit" className="button">Register</button>
+        </div>
+        <div className="register-footer">
+          <h5>Already have an account? Log in.</h5> 
+          <Link to="/login">
+            <button type="button" className="button">Login</button>
+          </Link>
+        </div>
+      </form>
+    </div>
   );
 }

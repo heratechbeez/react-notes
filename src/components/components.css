@@ -1,100 +1,126 @@
-
-.note {
-    background-color: #2e2e2e;
-    border-radius: 8px;
-    padding: 20px;
-    margin: 10px 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .note.new {
-    border: 1px solid #444;
-  }
-  
-  .note-title {
-    width: calc(100% - 20px); 
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #555;
-    border-radius: 4px;
-    margin-bottom: 10px;
-    background-color: #1f1d1d;
-    color: #fff;
-    resize: none; 
-  }
-  
-  .note-text {
-    width: calc(100% - 20px); 
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #555;
-    border-radius: 4px;
-    margin-bottom: 10px;
-    background-color: #1f1d1d;
-    color: #fff;
-    resize: none; 
-  }
-  
-  .note-footer {
+.container {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    font-size: 0.875rem;
+    padding: 20px;
   }
   
-  .note-footer small {
-    color: #aaa;
-  }
-  
-  .save {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s;
-  }
-  
-  .save:hover {
-    background-color: #0056b3;
-  }
-  
-  .save:disabled {
-    background-color: #555;
-    cursor: not-allowed;
-  }
-  
-.search {
+  .search {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 20px; 
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin: 20px;
+    margin-bottom: 120px;
   }
   
   .search input {
-    width: 300px;
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #555;
-    border-radius: 4px;
-    background-color: #1f1d1d;
-    color: #fff;
-  }
-  
-  .search button {
+    width: 100%;
     padding: 10px 20px;
-    font-size: 1rem;
-    margin-left: 10px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1.2rem;
   }
   
-  .search button:hover {
-    background-color: #0056b3;
+  .notes-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 350px;
+    padding: 20px;
+  }
+  
+  .note-item, .add-note {
+    background-color: rgba(0, 0, 0, 0.147);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 300px;
+    min-height: 200px;
+  }
+  
+  .note-item img, .add-note img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .note-item h3, .add-note h3 {
+    margin: 10px 0;
+    font-size: 18px;
+    text-align: center;
+  }
+  
+  .note-item p, .add-note p {
+    margin: 10px;
+    text-align: center;
+  }
+  
+  .note-item .date {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #ccc;
+    text-align: center;
+    width: 100%; 
+  }
+  
+  .add-note input,
+  .add-note textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  .add-note textarea {
+    height: 100px;
+  }
+  
+  .note-item .button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .note-item .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .note-item .buttons button {
+    background-color: grey;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  @media (max-width: 1200px) {
+    .notes-list {
+      grid-template-columns: repeat(2, 1fr); 
+      gap: 20px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .notes-list {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  
+    .search {
+      margin-left: 0;
+    }
   }
